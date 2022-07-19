@@ -49,7 +49,7 @@ function round (playerSeleciton, computerSelection) {
 function game() {
     let userScore = 0;
     let compScore = 0;
-    for (let i=0;i<5;i++){
+    for (let i=0;i<10;i++){
         let playerSeleciton = prompt("Rock, Papers, or Scissors?");
         let roundResult = round(playerSeleciton,computerPlay());
         if (roundResult == "win"){
