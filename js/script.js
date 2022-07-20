@@ -13,32 +13,25 @@ function computerPlay() {
 }
 
 function round (playerSeleciton, computerSelection) {
-    if (playerSeleciton.toLowerCase() == computerSelection.toLowerCase()) {
-        console.log("This was a tie. Play again!");
+    if (playerSeleciton == computerSelection) {
         return "tie";
     }
-    else if (playerSeleciton.toLowerCase() == "rock" && computerSelection.toLowerCase() == "paper") {
-        console.log( "Computer wins! Paper beats Rock.");
+    else if (playerSeleciton == "rock" && computerSelection == "paper") {
         return "loss";
     }
-    else if (playerSeleciton.toLowerCase() == "rock" && computerSelection.toLowerCase() == "scissors") {
-        console.log( "You win! Rock beats Scissors.");
+    else if (playerSeleciton == "rock" && computerSelection == "scissors") {
         return "win";
     }
-    else if (playerSeleciton.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "paper") {
-        console.log( "You win! Scissors beats Paper.");
+    else if (playerSeleciton == "scissors" && computerSelection == "paper") {
         return "win";
     }
-    else if (playerSeleciton.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "rock") {
-        console.log( "Computer wins! Rock beats Scissors.");
+    else if (playerSeleciton == "scissors" && computerSelection == "rock") {
         return "loss";
     }
-    else if (playerSeleciton.toLowerCase() == "paper" && computerSelection.toLowerCase() == "rock") {
-        console.log( "You win! Paper beats Rock.");
+    else if (playerSeleciton == "paper" && computerSelection == "rock") {
         return "win";
     }
-    else if (playerSeleciton.toLowerCase() == "paper" && computerSelection.toLowerCase() == "scissors") {
-        console.log( "Computer wins! Scissors beats Paper.");
+    else if (playerSeleciton == "paper" && computerSelection == "scissors") {
         return "loss";
     }
 
@@ -46,31 +39,56 @@ function round (playerSeleciton, computerSelection) {
 
 }
 
-function game() {
-    let userScore = 0;
-    let compScore = 0;
-    for (let i=0;i<10;i++){
-        let playerSeleciton = prompt("Rock, Papers, or Scissors?");
-        let roundResult = round(playerSeleciton,computerPlay());
-        if (roundResult == "win"){
-            userScore++;
-        }
-        else if (roundResult == "loss"){
-            compScore++;
-        }
-        console.log("You have: " + userScore + " points. Computer has:" + compScore + " points.");
+let userScore = 0;
+let computerScore = 0;
+let roundNumber = 0;
+
+
+function playRound() {
+    const playerSelection = this.id;
+    console.log(playerSelection);
+    if (playerSelection == "reset") {
+        userScore = 0;
+        computerScore = 0;
+        roundNumber = 0;
+        document.getElementById("userScore").innerHTML = userScore;
+        document.getElementById("compScore").innerHTML = computerScore;
+        document.getElementById("bMessage").innerHTML = "The game has been reset...";
+
     }
-    if (userScore > compScore) {
-        console.log("YOU WIN!");
+    const computerSelection = computerPlay();
+    const result = round(playerSelection, computerSelection);
+
+    if (result == "win") {
+        userScore++;
+        roundNumber++;
+        document.getElementById("userScore").innerHTML = userScore;
+        document.getElementById("compScore").innerHTML = computerScore;
+        document.getElementById("bMessage").innerHTML = "You win round " + roundNumber  + "!";
+
     }
-    else if (compScore > userScore){
-        console.log("you loose.....");
+    else if (result == "loss") {
+        computerScore++;
+        roundNumber++;
+        document.getElementById("userScore").innerHTML = userScore;
+        document.getElementById("compScore").innerHTML = computerScore;
+        document.getElementById("bMessage").innerHTML = "You lost round "+ roundNumber+ "!";
+
     }
-    else if (userScore == compScore){
-        console.log("Tie Game")
+    else if (result == "tie") {
+        roundNumber++;
+        document.getElementById("userScore").innerHTML = userScore;
+        document.getElementById("compScore").innerHTML = computerScore;
+        document.getElementById("bMessage").innerHTML = "It's a tie for round "+ roundNumber+ "!";
+
     }
 }
 
-game()
+const buttons = Array.from(document.querySelectorAll("button"));
+buttons.forEach(button => button.addEventListener('click', playRound)); 
 
-//console.log(computerPlay());
+
+
+
+
+
