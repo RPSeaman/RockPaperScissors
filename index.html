@@ -3,10 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <title>Rock Paper Scissors</title>
-
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <script src="js/script.js"></script>
+  <h1 class="Title">Rock Paper Scissors</h1>
+    <div id="container">
+      <button type="button" class="button" id="rock">
+        <span class="button__text">Rock</span>
+        <span class="button__icon">
+          <ion-icon name="ellipse-outline"></ion-icon>
+        </span>
+      </button>
+      <button type="button" class="button" id="paper">
+        <span class="button__text">Paper</span>
+        <span class="button__icon">
+          <ion-icon name="document-outline"></ion-icon>
+        </span>
+      </button>
+      <button type="button" class="button" id="scissors">
+        <span class="button__text">Scissors</span>
+        <span class="button__icon">
+          <ion-icon name="cut-outline"></ion-icon>        
+        </span>
+      </button>
+    </div>
+    <div class="scoreboard">
+      <div class="grouping">
+        <div class="name">Your Score</div>
+        <div id="userScore">0</div>
+      </div>
+      <div class="grouping">
+        <div class="name">Computer Score </div>
+        <div id="compScore">0</div>
+      </div>
+    </div>
+    <div id="bMessage" class="bMessage">
+      Select Rock, Paper, or Scissors...
+    </div>
+    <button type="button" class="button" id="reset">
+      <span class="button__text">Reset</span>
+      <span class="button__icon">
+        <ion-icon name="refresh-circle-outline"></ion-icon>
+      </span>
+    </button>
 
+
+    <script src="js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </body>
 </html>
